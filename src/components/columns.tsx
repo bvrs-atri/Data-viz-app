@@ -42,7 +42,7 @@ export const getColumns = (handleDelete: (rowIndex: number) => void) => [
     cell: ({ row }) => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost">
+          <Button variant="ghost" className="h-5">
             <MoreVertical />
           </Button>
         </DropdownMenuTrigger>

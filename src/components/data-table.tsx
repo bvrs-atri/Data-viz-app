@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -12,6 +10,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useState } from "react";
 
 import {
   Table,
@@ -27,7 +26,9 @@ import { DownloadButton } from "./download-button";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
+  columns: (
+    handleDelete: (rowIndex: number) => void
+  ) => ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
@@ -35,6 +36,12 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [tableData, setTableData] = useState<TData[]>(data);
+
+  const handleDelete = (rowIndex: number) => {
+    setTableData((prev) => prev.filter((_, index) => index !== rowIndex));
+  };
+
   const [pagination, setPagination] = useState({
     pageIndex: 0,
     pageSize: 15,
@@ -43,8 +50,8 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
-    data,
-    columns,
+    data: tableData,
+    columns: columns(handleDelete),
     state: {
       columnFilters,
       pagination,
@@ -64,18 +71,16 @@ export function DataTable<TData, TValue>({
           <TableHeader className="sticky top-0 z-10 bg-background shadow-md">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -100,7 +105,7 @@ export function DataTable<TData, TValue>({
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
+                  colSpan={columns(handleDelete).length}
                   className="h-24 text-center"
                 >
                   No results.
@@ -117,7 +122,7 @@ export function DataTable<TData, TValue>({
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
         </div>
-        <DownloadButton data={data} />
+        <DownloadButton data={tableData} />
       </div>
     </div>
   );

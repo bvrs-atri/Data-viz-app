@@ -4,7 +4,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
-import { createColumnHelper } from "@tanstack/react-table";
+import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { MoreVertical } from "lucide-react";
 import { Event } from "../lib/data";
 import { DefaultHeader } from "./default-header";
@@ -13,7 +13,9 @@ import { DropdownMenu, DropdownMenuItem } from "./ui/dropdown-menu";
 
 const columnHelper = createColumnHelper<Event>();
 
-export const getColumns = (handleDelete: (rowIndex: number) => void) => [
+export const getColumns = (
+  handleDelete: (rowIndex: number) => void
+): ColumnDef<Event, any>[] => [
   columnHelper.accessor("PipelineId", {
     id: "PipelineId",
     cell: (info) => info.getValue(),

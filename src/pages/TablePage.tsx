@@ -1,9 +1,12 @@
 // pages/TablePage.tsx
 import { getColumns } from "@/components/columns";
 import { DataTable } from "@/components/data-table";
-import { data, Event } from "@/lib/data";
+import { useDataContext } from "@/context/DataContext";
+import { Event } from "@/lib/data";
 
 export default function TablePage() {
+  const { data } = useDataContext();
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4 text-center"></h2>

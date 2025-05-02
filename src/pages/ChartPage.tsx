@@ -3,9 +3,11 @@ import { TaskDurationBarChart } from "@/components/BarChartComponent"; // if you
 import { PieChartComponent } from "@/components/PieChartComponent";
 import ExecutionTimeLineChart from "@/components/executiontimelinechart";
 import { Card } from "@/components/ui/card";
-import { data } from "../lib/data";
+import { useDataContext } from "@/context/DataContext";
 
 export default function ChartPage() {
+  const { data } = useDataContext();
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold"></h2>

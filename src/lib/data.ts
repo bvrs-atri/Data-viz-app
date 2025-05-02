@@ -13,7 +13,7 @@ const pipelineIds = Array.from({ length: 10 }, (_, i) => `pipeline-${i + 1}`);
 
 const generateDummyData = (): Event[] => {
   return pipelineIds.flatMap((pipelineId) =>
-    Array.from({ length: 100 }, () => ({
+    Array.from({ length: 50 }, () => ({
       PipelineId: pipelineId,
       TaskStatus: faker.helpers.arrayElement([
         "Pending",

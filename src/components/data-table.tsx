@@ -21,6 +21,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import { useDataContext } from "@/context/DataContext";
 import { DataTablePagination } from "./data-table-pagination";
 import { DownloadButton } from "./download-button";
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
@@ -28,7 +29,7 @@ import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 interface DataTableProps<TData, TValue> {
   columns: (
     handleDelete: (rowIndex: number) => void
-  ) => ColumnDef<TData, TValue>[];
+  ) => ColumnDef<TData, TValue>[]; // changed here
   data: TData[];
 }
 
@@ -36,7 +37,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const [tableData, setTableData] = useState<TData[]>(data);
+  const { data: tableData, setData: setTableData } = useDataContext();
 
   const handleDelete = (rowIndex: number) => {
     setTableData((prev) => prev.filter((_, index) => index !== rowIndex));

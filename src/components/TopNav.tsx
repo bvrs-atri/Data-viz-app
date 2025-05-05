@@ -1,5 +1,4 @@
 // components/TopNav.tsx
-"use client";
 
 import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
 import { NavLink } from "react-router-dom";
@@ -7,7 +6,7 @@ import { NavLink } from "react-router-dom";
 export function TopNav() {
   return (
     <div className="border-b shadow sticky top-0 z-50 bg-gray-50">
-      <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl px- py-3 flex items-center justify-between">
         <h1 className="text-xl font-bold">Pipeline Shop</h1>
 
         <Menubar className="bg-background">

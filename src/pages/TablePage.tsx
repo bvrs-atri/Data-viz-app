@@ -1,4 +1,5 @@
 // pages/TablePage.tsx
+import { AddRowButton } from "@/components/AddRowButton";
 import { getColumns } from "@/components/columns";
 import { DataTable } from "@/components/data-table";
 import { useDataContext } from "@/context/DataContext";
@@ -9,7 +10,7 @@ export default function TablePage() {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-4 text-center"></h2>
+      <AddRowButton></AddRowButton>
       <DataTable<Event, any> columns={getColumns} data={data} />
     </div>
   );

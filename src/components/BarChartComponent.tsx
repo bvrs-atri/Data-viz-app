@@ -25,7 +25,7 @@ export function TaskDurationBarChart({ data }: Props) {
 
   return (
     <Card className="p-4 mr-3">
-      <CardHeader>
+      <CardHeader className="items-center justify-center">
         <CardTitle>Task Duration </CardTitle>
       </CardHeader>
       <CardContent className="flex items-center justify-center h-full">

@@ -27,12 +27,16 @@ import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 interface DataTableProps<TData, TValue> {
   columns: (
     handleDelete: (rowIndex: number) => void
-  ) => ColumnDef<TData, TValue>[]; // changed here
+  ) => ColumnDef<TData, TValue>[];
   data: TData[];
+  setSelectedRow: (row: TData) => void;
+  setIsEditSheetOpen: (open: boolean) => void;
 }
 
 export function DataTable<TData, TValue>({
   columns,
+  setSelectedRow,
+  setIsEditSheetOpen,
 }: DataTableProps<TData, TValue>) {
   const { data: tableData, setData: setTableData } = useDataContext();
 
@@ -86,7 +90,7 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getPaginationRowModel().rows.map((row) => (
                 <TableRow
-                  className="text-center"
+                  className="text-center  group hover:bg-muted relative"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
@@ -98,6 +102,26 @@ export function DataTable<TData, TValue>({
                       )}
                     </TableCell>
                   ))}
+
+                  <TableCell className="relative w-[120px]">
+                    <div className="absolute right-2 top-1/2 -translate-y-1/2 hidden group-hover:flex gap-2">
+                      <button
+                        className="text-sm text-blue-600 hover:underline"
+                        onClick={() => {
+                          setSelectedRow(row.original);
+                          setIsEditSheetOpen(true);
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="text-sm text-red-600 hover:underline"
+                        onClick={() => handleDelete(row.index)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </TableCell>
                 </TableRow>
               ))
             ) : (

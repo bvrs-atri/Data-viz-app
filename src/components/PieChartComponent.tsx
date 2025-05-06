@@ -53,10 +53,10 @@ export function PieChartComponent({ data }: PieChartComponentProps) {
 
   return (
     <Card className="p-4 mr-3">
-      <CardHeader>
+      <CardHeader className="items-center justify-center">
         <CardTitle>Task Status</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex justify-center items-center">
         <ChartContainer
           config={chartConfig}
           className="aspect-square max-h-[300px]"

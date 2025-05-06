@@ -9,24 +9,20 @@ export type Event = {
   ExecutionTime: number;
 };
 
-const pipelineIds = Array.from({ length: 10 }, (_, i) => `pipeline-${i + 1}`);
-
-const generateDummyData = (): Event[] => {
-  return pipelineIds.flatMap((pipelineId) =>
-    Array.from({ length: 50 }, () => ({
-      PipelineId: pipelineId,
-      TaskStatus: faker.helpers.arrayElement([
-        "Pending",
-        "In Progress",
-        "Done",
-        "Errors",
-      ]),
-      TaskDuration: faker.number.int({ min: 1, max: 100 }),
-      DataTransferVolume: faker.number.int({ min: 1, max: 1000 }),
-      ResourceUtilization: faker.number.int({ min: 0, max: 100 }),
-      ExecutionTime: faker.number.int({ min: 1, max: 100 }),
-    }))
-  );
+const generateDummyData = (count: number = 500): Event[] => {
+  return Array.from({ length: count }, () => ({
+    PipelineId: faker.string.alphanumeric(10), // 10-character random string
+    TaskStatus: faker.helpers.arrayElement([
+      "Pending",
+      "In Progress",
+      "Done",
+      "Errors",
+    ]),
+    TaskDuration: faker.number.int({ min: 1, max: 100 }),
+    DataTransferVolume: faker.number.int({ min: 1, max: 1000 }),
+    ResourceUtilization: faker.number.int({ min: 0, max: 100 }),
+    ExecutionTime: faker.number.int({ min: 1, max: 100 }),
+  }));
 };
 
 export const data: Event[] = generateDummyData();

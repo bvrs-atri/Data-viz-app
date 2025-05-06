@@ -26,11 +26,11 @@ export default function ExecutionTimeLineChart({ data }: Props) {
   );
 
   return (
-    <Card className="ml-3 mb-3 mr-6">
-      <CardHeader>
+    <Card className="ml-3 mb-3 mr-3">
+      <CardHeader className="items-center justify-center">
         <CardTitle>Execution Time</CardTitle>
       </CardHeader>
-      <CardContent className="h-[300px]">
+      <CardContent className="flex justify-center items-center h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
             <XAxis tick={false} axisLine={false} />

@@ -1,15 +1,6 @@
-import {
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import { MoreVertical } from "lucide-react";
 import { Event } from "../lib/data";
 import { DefaultHeader } from "./default-header";
-import { Button } from "./ui/button";
-import { DropdownMenu, DropdownMenuItem } from "./ui/dropdown-menu";
 
 const columnHelper = createColumnHelper<Event>();
 
@@ -38,27 +29,5 @@ export const getColumns = (
   }),
   columnHelper.accessor("ExecutionTime", {
     header: (info) => <DefaultHeader info={info} name="Execution Time" />,
-  }),
-  columnHelper.display({
-    id: "actions",
-    cell: ({ row }) => (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-5">
-            <MoreVertical />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="border-b shadow z-10 bg-background shadow-md w-25 rounded-md ">
-          <DropdownMenuLabel className="flex items-center justify-center text-center h-8">
-            Actions
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator className="border-t" />
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => handleDelete(row.index)}>
-            Delete
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ),
   }),
 ];

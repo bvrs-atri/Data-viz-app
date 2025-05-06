@@ -24,8 +24,8 @@ export function DataTransferBarChart({ data }: Props) {
   }, [data]);
 
   return (
-    <Card className="p-4 mt-4">
-      <CardHeader>
+    <Card className="p-4">
+      <CardHeader className="items-center justify-center">
         <CardTitle>Data Transfer Volume</CardTitle>
       </CardHeader>
       <CardContent className="flex items-center justify-center h-full">

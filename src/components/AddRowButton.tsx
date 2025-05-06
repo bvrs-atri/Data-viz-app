@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/sheet";
 import { useDataContext } from "@/context/DataContext";
 import { Event } from "@/lib/data";
-import { Separator } from "@radix-ui/react-menubar";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -55,7 +54,7 @@ export function AddRowButton() {
   };
 
   const handleSubmit = () => {
-    setData((prev) => [formData, ...prev]); // add at top
+    setData((prev) => [formData, ...prev]);
     setFormData({
       PipelineId: "",
       TaskStatus: "Pending",
@@ -71,62 +70,104 @@ export function AddRowButton() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button className="float-right mb-3">
-          <PlusIcon />
+          <PlusIcon className="mr-2 h-4 w-4" />
           Add Row
         </Button>
       </SheetTrigger>
-      <SheetContent className="space-y-1">
+      <SheetContent>
         <SheetHeader>
           <SheetTitle>Add New Row</SheetTitle>
         </SheetHeader>
-        <Separator className="border-t" />
-
-        {[
-          "PipelineId",
-          "TaskDuration",
-          "DataTransferVolume",
-          "ResourceUtilization",
-          "ExecutionTime",
-        ].map((field) => (
-          <div key={field} className="space-y-1">
-            <Label className="ml-1" htmlFor={field}>
-              {field}
+        <div className="flex flex-col gap-4 py-4 px-2">
+          <div>
+            <Label className="text-sm font-medium text-gray-700">
+              Pipeline ID
             </Label>
             <Input
-              className="w-80 ml-2"
-              id={field}
-              name={field}
-              type="text"
-              value={(formData as any)[field]}
+              name="PipelineId"
+              value={formData.PipelineId}
               onChange={handleChange}
+              placeholder="Enter Pipeline ID"
             />
           </div>
-        ))}
 
-        <div className="space-y-1">
-          <Label className="ml-1" htmlFor="TaskStatus">
-            Task Status
-          </Label>
-          <Select
-            value={formData.TaskStatus}
-            onValueChange={handleStatusChange}
-          >
-            <SelectTrigger className="ml-2">
-              <SelectValue placeholder="Select status" />
-            </SelectTrigger>
-            <SelectContent>
-              {["Pending", "In Progress", "Done", "Errors"].map((status) => (
-                <SelectItem key={status} value={status}>
-                  {status}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div>
+            <Label className="text-sm font-medium text-gray-700">
+              Task Status
+            </Label>
+            <Select
+              value={formData.TaskStatus}
+              onValueChange={handleStatusChange}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select status" />
+              </SelectTrigger>
+              <SelectContent>
+                {["Pending", "In Progress", "Done", "Errors"].map((status) => (
+                  <SelectItem key={status} value={status}>
+                    {status}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div>
+            <Label className="text-sm font-medium text-gray-700">
+              Task Duration
+            </Label>
+            <Input
+              type="number"
+              name="TaskDuration"
+              value={formData.TaskDuration}
+              onChange={handleChange}
+              placeholder="Enter Task Duration"
+            />
+          </div>
+
+          <div>
+            <Label className="text-sm font-medium text-gray-700">
+              Data Transfer Volume
+            </Label>
+            <Input
+              type="number"
+              name="DataTransferVolume"
+              value={formData.DataTransferVolume}
+              onChange={handleChange}
+              placeholder="Enter Data Transfer Volume"
+            />
+          </div>
+
+          <div>
+            <Label className="text-sm font-medium text-gray-700">
+              Resource Utilization
+            </Label>
+            <Input
+              type="number"
+              name="ResourceUtilization"
+              value={formData.ResourceUtilization}
+              onChange={handleChange}
+              placeholder="Enter Resource Utilization"
+            />
+          </div>
+
+          <div>
+            <Label className="text-sm font-medium text-gray-700">
+              Execution Time
+            </Label>
+            <Input
+              type="number"
+              name="ExecutionTime"
+              value={formData.ExecutionTime}
+              onChange={handleChange}
+              placeholder="Enter Execution Time"
+            />
+          </div>
+
+          <Button className="mt-4" onClick={handleSubmit}>
+            Add
+          </Button>
         </div>
-
-        <Button className="w-80 ml-2" onClick={handleSubmit}>
-          Add
-        </Button>
       </SheetContent>
     </Sheet>
   );

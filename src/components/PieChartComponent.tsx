@@ -53,14 +53,11 @@ export function PieChartComponent({ data }: PieChartComponentProps) {
 
   return (
     <Card className="p-4 mr-3">
-      <CardHeader className="items-center justify-center">
+      <CardHeader className="justify-center">
         <CardTitle>Task Status</CardTitle>
       </CardHeader>
-      <CardContent className="flex justify-center items-center">
-        <ChartContainer
-          config={chartConfig}
-          className="aspect-square max-h-[300px]"
-        >
+      <CardContent className="flex justify-center items-center h-[300px]">
+        <ChartContainer config={chartConfig} className="w-[600px] h-[350px]">
           <PieChart>
             <ChartTooltip
               cursor={false}
@@ -96,7 +93,7 @@ export function PieChartComponent({ data }: PieChartComponentProps) {
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className="fill-muted-foreground"
+                          className="fill-muted-foreground "
                         >
                           Tasks
                         </tspan>

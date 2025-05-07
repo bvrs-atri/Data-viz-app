@@ -27,5 +27,9 @@ export function DownloadButton({ data }: DownloadButtonProps) {
     URL.revokeObjectURL(url);
   };
 
-  return <Button onClick={handleDownload}>Download CSV</Button>;
+  return (
+    <Button onClick={handleDownload} data-testid="downloadbutton">
+      Download CSV
+    </Button>
+  );
 }

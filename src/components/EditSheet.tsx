@@ -51,7 +51,7 @@ export function EditSheet({
   if (!formData) return null;
 
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
+    <Sheet open={open} onOpenChange={onOpenChange} data-testid="edit-sheet">
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Edit Row</SheetTitle>
@@ -66,6 +66,7 @@ export function EditSheet({
                 value={formData.PipelineId}
                 disabled
                 className="bg-gray-100 cursor-not-allowed"
+                data-testid="edit-pipelineid"
               />
             </div>
 
@@ -156,10 +157,15 @@ export function EditSheet({
                   })
                 }
                 placeholder="Enter Execution Time"
+                data-testid="edit-executiontime"
               />
             </div>
 
-            <Button className="mt-4" onClick={handleSave}>
+            <Button
+              className="mt-4"
+              onClick={handleSave}
+              data-testid="save-button"
+            >
               Save Changes
             </Button>
           </div>

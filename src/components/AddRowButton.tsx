@@ -69,7 +69,7 @@ export function AddRowButton() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button className="float-right mb-3">
+        <Button className="float-right mb-3" data-testid="addbutton">
           <PlusIcon className="mr-2 h-4 w-4" />
           Add Row
         </Button>
@@ -88,6 +88,7 @@ export function AddRowButton() {
               value={formData.PipelineId}
               onChange={handleChange}
               placeholder="Enter Pipeline ID"
+              data-testid="input-pipeline"
             />
           </div>
 
@@ -99,10 +100,10 @@ export function AddRowButton() {
               value={formData.TaskStatus}
               onValueChange={handleStatusChange}
             >
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full" data-testid="input-taskstatus">
                 <SelectValue placeholder="Select status" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent data-testid="input-selecttaskstatus">
                 {["Pending", "In Progress", "Done", "Errors"].map((status) => (
                   <SelectItem key={status} value={status}>
                     {status}
@@ -122,6 +123,7 @@ export function AddRowButton() {
               value={formData.TaskDuration}
               onChange={handleChange}
               placeholder="Enter Task Duration"
+              data-testid="input-taskduration"
             />
           </div>
 
@@ -135,6 +137,7 @@ export function AddRowButton() {
               value={formData.DataTransferVolume}
               onChange={handleChange}
               placeholder="Enter Data Transfer Volume"
+              data-testid="input-datatransfervolume"
             />
           </div>
 
@@ -148,6 +151,7 @@ export function AddRowButton() {
               value={formData.ResourceUtilization}
               onChange={handleChange}
               placeholder="Enter Resource Utilization"
+              data-testid="input-resourceutil"
             />
           </div>
 
@@ -161,10 +165,11 @@ export function AddRowButton() {
               value={formData.ExecutionTime}
               onChange={handleChange}
               placeholder="Enter Execution Time"
+              data-testid="input-executiontime"
             />
           </div>
 
-          <Button className="mt-4" onClick={handleSubmit}>
+          <Button className="mt-4" onClick={handleSubmit} data-testid="AddRow">
             Add
           </Button>
         </div>

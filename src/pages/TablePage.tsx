@@ -13,7 +13,7 @@ export default function TablePage() {
   const [isEditSheetOpen, setIsEditSheetOpen] = useState(false);
 
   return (
-    <div>
+    <div data-testid="cytable">
       <AddRowButton></AddRowButton>
       <DataTable
         data={data}

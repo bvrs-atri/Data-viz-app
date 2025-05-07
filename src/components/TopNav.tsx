@@ -27,7 +27,7 @@ export function TopNav() {
           </MenubarMenu>
 
           <MenubarMenu>
-            <NavLink to="/charts">
+            <NavLink to="/charts" data-testid="chartsbutton">
               {({ isActive }) => (
                 <MenubarTrigger
                   className={

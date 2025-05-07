@@ -93,6 +93,7 @@ export function DataTable<TData, TValue>({
                   className="text-center  group hover:bg-muted relative"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  data-testid="table-row"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -111,12 +112,14 @@ export function DataTable<TData, TValue>({
                           setSelectedRow(row.original);
                           setIsEditSheetOpen(true);
                         }}
+                        data-testid="editbutton"
                       >
                         Edit
                       </button>
                       <button
                         className="text-sm text-red-600 hover:underline"
                         onClick={() => handleDelete(row.index)}
+                        data-testid="deletebutton"
                       >
                         Delete
                       </button>

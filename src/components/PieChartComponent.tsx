@@ -87,6 +87,7 @@ export function PieChartComponent({ data }: PieChartComponentProps) {
                           x={viewBox.cx}
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
+                          data-testid="totaltasks"
                         >
                           {total.toLocaleString()}
                         </tspan>
